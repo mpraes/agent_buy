@@ -23,3 +23,5 @@ def cria_fornecedor(fornecedor_data: CriaFornecedor, db: Session) -> FornecedorR
         raise ValueError(f"Erro ao criar fornecedor: {str(e)}")
 
 def lista_fornecedores(db: Session, pagina: int = 1, tamanho_pagina: int = 10) -> FornecedorListResponse:
+    """Lista fornecedores com paginação"""
+    pass

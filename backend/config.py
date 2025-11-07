@@ -11,6 +11,11 @@ class Settings(BaseSettings):
     app_name: str = Field(..., env="APP_NAME")
     app_env: str = Field(..., env="APP_ENV")
 
+    @property
+    def db_schema(self) -> str:
+        """Retorna o schema do banco baseado no ambiente"""
+        return "dev" if self.app_env.lower() == "development" else "prd"
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
