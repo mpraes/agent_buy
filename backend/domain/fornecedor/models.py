@@ -9,14 +9,16 @@ class StatusFornecedor(str, PyEnum):
     ATIVO = "ativo"
     INATIVO = "inativo"
 
+_settings = get_settings()
+
 class Fornecedor(Base):
     """Modelo de fornecedor"""
     __tablename__ = 'fornecedor'
-    @classmethod
-    def __table_args__(cls):
-        settings = get_settings()
-        return (UniqueConstraint('cnpj', name='uq_fornecedor_cnpj'),
-        {"schema": get_settings().db_schema})
+
+    __table_args__ = (
+        UniqueConstraint('cnpj', name='uq_fornecedor_cnpj'),
+        {"schema": _settings.db_schema}
+    )
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     nome_razao = Column(String(100), nullable=False)

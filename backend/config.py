@@ -3,11 +3,11 @@ from pydantic import Field
 from dotenv import load_dotenv
 from functools import lru_cache
 
+load_dotenv()
+
 class Settings(BaseSettings):
     """Configurações da aplicação"""
-
-    database_url: str = Field(..., env="DATABASE_URL")
-    
+    database_url: str = Field(..., env="DATABASE_URL") 
     app_name: str = Field(..., env="APP_NAME")
     app_env: str = Field(..., env="APP_ENV")
 
